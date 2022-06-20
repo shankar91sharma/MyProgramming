@@ -4,4 +4,7 @@ DDL : data definition language
 DML : data manipulation language
 DCL : data control language
 
-DDL : data definition language
+DDL : data definition language :
+--------------------------------------
+Alter column :
+ALTER TABLE `user` ADD `email` VARCHAR(100) NOT NULL AFTER `name`;
