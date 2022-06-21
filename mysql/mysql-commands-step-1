@@ -1,0 +1,485 @@
+Microsoft Windows [Version 10.0.19043.1766]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\xampp\mysql\bin>mysql -h 127.0.0.1 --port=3306 -u root --password
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 28
+Server version: 10.4.17-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> SHOW DATABASES;
++---------------------+
+| Database            |
++---------------------+
+| chat_application    |
+| ci4_crud            |
+| herbalif_hlproduct  |
+| information_schema  |
+| laravel_blog        |
+| laravel_ecom        |
+| learn_mysql         |
+| mybakkmz_studenterp |
+| mysql               |
+| online_bkry         |
+| oops_crud           |
+| performance_schema  |
+| phpmyadmin          |
+| test                |
+| youtube             |
++---------------------+
+15 rows in set (0.001 sec)
+
+MariaDB [(none)]> show databases;
++---------------------+
+| Database            |
++---------------------+
+| chat_application    |
+| ci4_crud            |
+| herbalif_hlproduct  |
+| information_schema  |
+| laravel_blog        |
+| laravel_ecom        |
+| learn_mysql         |
+| mybakkmz_studenterp |
+| mysql               |
+| online_bkry         |
+| oops_crud           |
+| performance_schema  |
+| phpmyadmin          |
+| test                |
+| youtube             |
++---------------------+
+15 rows in set (0.001 sec)
+
+MariaDB [(none)]> create database mysql_learning;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> show databases;
++---------------------+
+| Database            |
++---------------------+
+| chat_application    |
+| ci4_crud            |
+| herbalif_hlproduct  |
+| information_schema  |
+| laravel_blog        |
+| laravel_ecom        |
+| learn_mysql         |
+| mybakkmz_studenterp |
+| mysql               |
+| mysql_learning      |
+| online_bkry         |
+| oops_crud           |
+| performance_schema  |
+| phpmyadmin          |
+| test                |
+| youtube             |
++---------------------+
+16 rows in set (0.001 sec)
+
+MariaDB [(none)]> use mysql_learning;
+Database changed
+MariaDB [mysql_learning]> drop database learn_mysql;
+Query OK, 1 row affected (0.347 sec)
+
+MariaDB [mysql_learning]> show databases;
++---------------------+
+| Database            |
++---------------------+
+| chat_application    |
+| ci4_crud            |
+| herbalif_hlproduct  |
+| information_schema  |
+| laravel_blog        |
+| laravel_ecom        |
+| mybakkmz_studenterp |
+| mysql               |
+| mysql_learning      |
+| online_bkry         |
+| oops_crud           |
+| performance_schema  |
+| phpmyadmin          |
+| test                |
+| youtube             |
++---------------------+
+15 rows in set (0.001 sec)
+
+MariaDB [mysql_learning]> use mysql_learning;
+Database changed
+MariaDB [mysql_learning]> create table customer_master (customer_id int primary key, customer_name varchar(100) not null, customer_email varchar(50) not null, customer_status enum('Enabled','Disabled') );
+Query OK, 0 rows affected (0.334 sec)
+
+MariaDB [mysql_learning]> show tables
+    -> show table
+    -> SHOW TABLES;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'show table
+SHOW TABLES' at line 2
+MariaDB [mysql_learning]> SHOW TABLES;
++--------------------------+
+| Tables_in_mysql_learning |
++--------------------------+
+| customer_master          |
++--------------------------+
+1 row in set (0.001 sec)
+
+MariaDB [mysql_learning]> show tables;
++--------------------------+
+| Tables_in_mysql_learning |
++--------------------------+
+| customer_master          |
++--------------------------+
+1 row in set (0.001 sec)
+
+MariaDB [mysql_learning]> desc customer_master;
++-----------------+----------------------------+------+-----+---------+-------+
+| Field           | Type                       | Null | Key | Default | Extra |
++-----------------+----------------------------+------+-----+---------+-------+
+| customer_id     | int(11)                    | NO   | PRI | NULL    |       |
+| customer_name   | varchar(100)               | NO   |     | NULL    |       |
+| customer_email  | varchar(50)                | NO   |     | NULL    |       |
+| customer_status | enum('Enabled','Disabled') | YES  |     | NULL    |       |
++-----------------+----------------------------+------+-----+---------+-------+
+4 rows in set (0.100 sec)
+
+MariaDB [mysql_learning]> alter table customer_master rename to user_master;
+Query OK, 0 rows affected (0.283 sec)
+
+MariaDB [mysql_learning]> show tables;
++--------------------------+
+| Tables_in_mysql_learning |
++--------------------------+
+| user_master              |
++--------------------------+
+1 row in set (0.000 sec)
+
+MariaDB [mysql_learning]> alter table user_master rename to customer_master;
+Query OK, 0 rows affected (0.199 sec)
+
+MariaDB [mysql_learning]> show tables;
++--------------------------+
+| Tables_in_mysql_learning |
++--------------------------+
+| customer_master          |
++--------------------------+
+1 row in set (0.000 sec)
+
+MariaDB [mysql_learning]> desc customer_master
+    -> desc customer_master;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'desc customer_master' at line 2
+MariaDB [mysql_learning]> desc customer_master;
++-----------------+----------------------------+------+-----+---------+-------+
+| Field           | Type                       | Null | Key | Default | Extra |
++-----------------+----------------------------+------+-----+---------+-------+
+| customer_id     | int(11)                    | NO   | PRI | NULL    |       |
+| customer_name   | varchar(100)               | NO   |     | NULL    |       |
+| customer_email  | varchar(50)                | NO   |     | NULL    |       |
+| customer_status | enum('Enabled','Disabled') | YES  |     | NULL    |       |
++-----------------+----------------------------+------+-----+---------+-------+
+4 rows in set (0.033 sec)
+
+MariaDB [mysql_learning]> alter table customer_master add customer_mobile varchar(50) not null after customer_email;
+Query OK, 0 rows affected (0.132 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [mysql_learning]> desc customer_master;
++-----------------+----------------------------+------+-----+---------+-------+
+| Field           | Type                       | Null | Key | Default | Extra |
++-----------------+----------------------------+------+-----+---------+-------+
+| customer_id     | int(11)                    | NO   | PRI | NULL    |       |
+| customer_name   | varchar(100)               | NO   |     | NULL    |       |
+| customer_email  | varchar(50)                | NO   |     | NULL    |       |
+| customer_mobile | varchar(50)                | NO   |     | NULL    |       |
+| customer_status | enum('Enabled','Disabled') | YES  |     | NULL    |       |
++-----------------+----------------------------+------+-----+---------+-------+
+5 rows in set (0.009 sec)
+
+MariaDB [mysql_learning]> insert into customer_master (customer_id, customer_name,customer_email,customer_mobile,customer_status) value('1','ravi kumar','ravi@gmail.com','9988776666','Enabled');
+Query OK, 1 row affected (0.079 sec)
+
+MariaDB [mysql_learning]> insert into customer_master (customer_id, customer_name,customer_email,customer_mobile,customer_status) value('2','pooja sharma','pooja@gmail.com','8877999888','Enabled');
+Query OK, 1 row affected (0.090 sec)
+
+MariaDB [mysql_learning]> desc customer_master;
++-----------------+----------------------------+------+-----+---------+-------+
+| Field           | Type                       | Null | Key | Default | Extra |
++-----------------+----------------------------+------+-----+---------+-------+
+| customer_id     | int(11)                    | NO   | PRI | NULL    |       |
+| customer_name   | varchar(100)               | NO   |     | NULL    |       |
+| customer_email  | varchar(50)                | NO   |     | NULL    |       |
+| customer_mobile | varchar(50)                | NO   |     | NULL    |       |
+| customer_status | enum('Enabled','Disabled') | YES  |     | NULL    |       |
++-----------------+----------------------------+------+-----+---------+-------+
+5 rows in set (0.009 sec)
+
+MariaDB [mysql_learning]> select * from customer_master;
++-------------+---------------+-----------------+-----------------+-----------------+
+| customer_id | customer_name | customer_email  | customer_mobile | customer_status |
++-------------+---------------+-----------------+-----------------+-----------------+
+|           1 | ravi kumar    | ravi@gmail.com  | 9988776666      | Enabled         |
+|           2 | pooja sharma  | pooja@gmail.com | 8877999888      | Enabled         |
++-------------+---------------+-----------------+-----------------+-----------------+
+2 rows in set (0.000 sec)
+
+MariaDB [mysql_learning]> insert into customer_master (customer_id, customer_name,customer_email,customer_mobile,customer_status) value('2','Riya Verma','riya@gmail.com','7766889988','Enabled');
+ERROR 1062 (23000): Duplicate entry '2' for key 'PRIMARY'
+MariaDB [mysql_learning]> insert into customer_master (customer_id, customer_name,customer_email,customer_mobile,customer_status) value('3','Riya Verma','riya@gmail.com','7766889988','Enabled');
+Query OK, 1 row affected (0.074 sec)
+
+MariaDB [mysql_learning]> insert into customer_master (customer_id, customer_name,customer_email,customer_mobile,customer_status) value('4','Surya Singh','surya@gmail.com','9944889988','Enabled');
+Query OK, 1 row affected (0.105 sec)
+
+MariaDB [mysql_learning]> select * from customer_master;
++-------------+---------------+-----------------+-----------------+-----------------+
+| customer_id | customer_name | customer_email  | customer_mobile | customer_status |
++-------------+---------------+-----------------+-----------------+-----------------+
+|           1 | ravi kumar    | ravi@gmail.com  | 9988776666      | Enabled         |
+|           2 | pooja sharma  | pooja@gmail.com | 8877999888      | Enabled         |
+|           3 | Riya Verma    | riya@gmail.com  | 7766889988      | Enabled         |
+|           4 | Surya Singh   | surya@gmail.com | 9944889988      | Enabled         |
++-------------+---------------+-----------------+-----------------+-----------------+
+4 rows in set (0.000 sec)
+
+MariaDB [mysql_learning]> update customer_master set customer_status='Disabled' where customer_id='2';
+Query OK, 1 row affected (0.085 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mysql_learning]> select * from customer_master;
++-------------+---------------+-----------------+-----------------+-----------------+
+| customer_id | customer_name | customer_email  | customer_mobile | customer_status |
++-------------+---------------+-----------------+-----------------+-----------------+
+|           1 | ravi kumar    | ravi@gmail.com  | 9988776666      | Enabled         |
+|           2 | pooja sharma  | pooja@gmail.com | 8877999888      | Disabled        |
+|           3 | Riya Verma    | riya@gmail.com  | 7766889988      | Enabled         |
+|           4 | Surya Singh   | surya@gmail.com | 9944889988      | Enabled         |
++-------------+---------------+-----------------+-----------------+-----------------+
+4 rows in set (0.000 sec)
+
+MariaDB [mysql_learning]> alter table customer_master add customer_department varchar(100) not null after customer_mobile;
+Query OK, 0 rows affected (0.226 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [mysql_learning]> select * from customer_master;
++-------------+---------------+-----------------+-----------------+---------------------+-----------------+
+| customer_id | customer_name | customer_email  | customer_mobile | customer_department | customer_status |
++-------------+---------------+-----------------+-----------------+---------------------+-----------------+
+|           1 | ravi kumar    | ravi@gmail.com  | 9988776666      |                     | Enabled         |
+|           2 | pooja sharma  | pooja@gmail.com | 8877999888      |                     | Disabled        |
+|           3 | Riya Verma    | riya@gmail.com  | 7766889988      |                     | Enabled         |
+|           4 | Surya Singh   | surya@gmail.com | 9944889988      |                     | Enabled         |
++-------------+---------------+-----------------+-----------------+---------------------+-----------------+
+4 rows in set (0.000 sec)
+
+MariaDB [mysql_learning]> update customer_master SET customer_department='HR' where cusotmer_id='2';
+ERROR 1054 (42S22): Unknown column 'cusotmer_id' in 'where clause'
+MariaDB [mysql_learning]> select * from customer_master;
++-------------+---------------+-----------------+-----------------+---------------------+-----------------+
+| customer_id | customer_name | customer_email  | customer_mobile | customer_department | customer_status |
++-------------+---------------+-----------------+-----------------+---------------------+-----------------+
+|           1 | ravi kumar    | ravi@gmail.com  | 9988776666      |                     | Enabled         |
+|           2 | pooja sharma  | pooja@gmail.com | 8877999888      |                     | Disabled        |
+|           3 | Riya Verma    | riya@gmail.com  | 7766889988      |                     | Enabled         |
+|           4 | Surya Singh   | surya@gmail.com | 9944889988      |                     | Enabled         |
++-------------+---------------+-----------------+-----------------+---------------------+-----------------+
+4 rows in set (0.000 sec)
+
+MariaDB [mysql_learning]> update customer_master SET customer_department='HR' where customer_id='2';
+Query OK, 1 row affected (0.158 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mysql_learning]> select * from customer_master;
++-------------+---------------+-----------------+-----------------+---------------------+-----------------+
+| customer_id | customer_name | customer_email  | customer_mobile | customer_department | customer_status |
++-------------+---------------+-----------------+-----------------+---------------------+-----------------+
+|           1 | ravi kumar    | ravi@gmail.com  | 9988776666      |                     | Enabled         |
+|           2 | pooja sharma  | pooja@gmail.com | 8877999888      | HR                  | Disabled        |
+|           3 | Riya Verma    | riya@gmail.com  | 7766889988      |                     | Enabled         |
+|           4 | Surya Singh   | surya@gmail.com | 9944889988      |                     | Enabled         |
++-------------+---------------+-----------------+-----------------+---------------------+-----------------+
+4 rows in set (0.000 sec)
+
+MariaDB [mysql_learning]> update customer_master SET customer_department='IT' where customer_id='1';
+Query OK, 1 row affected (0.160 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mysql_learning]> update customer_master SET customer_department='ADMIN' where customer_id='3';
+Query OK, 1 row affected (0.155 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mysql_learning]> update customer_master SET customer_department='ADMIN' where customer_id='4';
+Query OK, 1 row affected (0.163 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mysql_learning]> select * from customer_master;
++-------------+---------------+-----------------+-----------------+---------------------+-----------------+
+| customer_id | customer_name | customer_email  | customer_mobile | customer_department | customer_status |
++-------------+---------------+-----------------+-----------------+---------------------+-----------------+
+|           1 | ravi kumar    | ravi@gmail.com  | 9988776666      | IT                  | Enabled         |
+|           2 | pooja sharma  | pooja@gmail.com | 8877999888      | HR                  | Disabled        |
+|           3 | Riya Verma    | riya@gmail.com  | 7766889988      | ADMIN               | Enabled         |
+|           4 | Surya Singh   | surya@gmail.com | 9944889988      | ADMIN               | Enabled         |
++-------------+---------------+-----------------+-----------------+---------------------+-----------------+
+4 rows in set (0.000 sec)
+
+MariaDB [mysql_learning]> select customer_name from customer_master where customer_department='ADMIN';
++---------------+
+| customer_name |
++---------------+
+| Riya Verma    |
+| Surya Singh   |
++---------------+
+2 rows in set (0.000 sec)
+
+MariaDB [mysql_learning]> create table order_master (order_id int primary key auto increment , order_no varchar(100) not null, order_customer int not null, order_date varchar(70) not null, order_amount float(10,2) not null, order_status enum('Pending','Complete','Rejected'));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'auto increment , order_no varchar(100) not null, order_customer int not null,...' at line 1
+MariaDB [mysql_learning]> create table order_master (order_id int primary key auto_increment , order_no varchar(100) not null, order_customer int not null, order_date varchar(70) not null, order_amount float(10,2) not null, order_status enum('Pending','Complete','Rejected'));
+Query OK, 0 rows affected (0.336 sec)
+
+MariaDB [mysql_learning]> insert into order_master ('MYSQL1001',1,'2022-06-01','1250.75','Pending');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''MYSQL1001',1,'2022-06-01','1250.75','Pending')' at line 1
+MariaDB [mysql_learning]> insert into order_master ('MYSQL1001','1','2022-06-01','1250.75','Pending');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''MYSQL1001','1','2022-06-01','1250.75','Pending')' at line 1
+MariaDB [mysql_learning]> insert into order_master ('','MYSQL1001','1','2022-06-01','1250.75','Pending');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''','MYSQL1001','1','2022-06-01','1250.75','Pending')' at line 1
+MariaDB [mysql_learning]> select * from order_master;
+Empty set (0.000 sec)
+
+MariaDB [mysql_learning]> desc order_master
+    -> desc order_master;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'desc order_master' at line 2
+MariaDB [mysql_learning]> desc order_master;
++----------------+---------------------------------------+------+-----+---------+----------------+
+| Field          | Type                                  | Null | Key | Default | Extra          |
++----------------+---------------------------------------+------+-----+---------+----------------+
+| order_id       | int(11)                               | NO   | PRI | NULL    | auto_increment |
+| order_no       | varchar(100)                          | NO   |     | NULL    |                |
+| order_customer | int(11)                               | NO   |     | NULL    |                |
+| order_date     | varchar(70)                           | NO   |     | NULL    |                |
+| order_amount   | float(10,2)                           | NO   |     | NULL    |                |
+| order_status   | enum('Pending','Complete','Rejected') | YES  |     | NULL    |                |
++----------------+---------------------------------------+------+-----+---------+----------------+
+6 rows in set (0.011 sec)
+
+MariaDB [mysql_learning]> insert into order_master ('1','ORDER1001','1','2022-06-01','1250.75','Pending');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''1','ORDER1001','1','2022-06-01','1250.75','Pending')' at line 1
+MariaDB [mysql_learning]> insert into order_master VALUE ('1','ORDER1001','1','2022-06-01','1250.75','Pending');
+Query OK, 1 row affected (0.154 sec)
+
+MariaDB [mysql_learning]> insert into order_master VALUE ('','ORDER1002','2','2022-06-03','1050.75','Pending');
+Query OK, 1 row affected, 1 warning (0.172 sec)
+
+MariaDB [mysql_learning]> select * from order_master;
++----------+-----------+----------------+------------+--------------+--------------+
+| order_id | order_no  | order_customer | order_date | order_amount | order_status |
++----------+-----------+----------------+------------+--------------+--------------+
+|        1 | ORDER1001 |              1 | 2022-06-01 |      1250.75 | Pending      |
+|        2 | ORDER1002 |              2 | 2022-06-03 |      1050.75 | Pending      |
++----------+-----------+----------------+------------+--------------+--------------+
+2 rows in set (0.000 sec)
+
+MariaDB [mysql_learning]> select * from order_master inner join customer_master ON customer_id.customer_id=order_master.order_customer ;
+ERROR 1054 (42S22): Unknown column 'customer_id.customer_id' in 'on clause'
+MariaDB [mysql_learning]> select * from order_master inner join customer_master ON customer_master.customer_id=order_master.order_customer ;
++----------+-----------+----------------+------------+--------------+--------------+-------------+---------------+-----------------+-----------------+---------------------+-----------------+
+| order_id | order_no  | order_customer | order_date | order_amount | order_status | customer_id | customer_name | customer_email  | customer_mobile | customer_department | customer_status |
++----------+-----------+----------------+------------+--------------+--------------+-------------+---------------+-----------------+-----------------+---------------------+-----------------+
+|        1 | ORDER1001 |              1 | 2022-06-01 |      1250.75 | Pending      |           1 | ravi kumar    | ravi@gmail.com  | 9988776666      | IT                  | Enabled         |
+|        2 | ORDER1002 |              2 | 2022-06-03 |      1050.75 | Pending      |           2 | pooja sharma  | pooja@gmail.com | 8877999888      | HR                  | Disabled        |
++----------+-----------+----------------+------------+--------------+--------------+-------------+---------------+-----------------+-----------------+---------------------+-----------------+
+2 rows in set (0.000 sec)
+
+MariaDB [mysql_learning]> select order_master.order_no, customer_master.customer_name from order_master inner join customer_master ON customer_master.customer_id=order_master.order_customer ;
++-----------+---------------+
+| order_no  | customer_name |
++-----------+---------------+
+| ORDER1001 | ravi kumar    |
+| ORDER1002 | pooja sharma  |
++-----------+---------------+
+2 rows in set (0.000 sec)
+
+MariaDB [mysql_learning]> select * from customer_master where customer_name like '%m_';
++-------------+---------------+-----------------+-----------------+---------------------+-----------------+
+| customer_id | customer_name | customer_email  | customer_mobile | customer_department | customer_status |
++-------------+---------------+-----------------+-----------------+---------------------+-----------------+
+|           2 | pooja sharma  | pooja@gmail.com | 8877999888      | HR                  | Disabled        |
+|           3 | Riya Verma    | riya@gmail.com  | 7766889988      | ADMIN               | Enabled         |
++-------------+---------------+-----------------+-----------------+---------------------+-----------------+
+2 rows in set (0.001 sec)
+
+MariaDB [mysql_learning]> select * from customer_master where customer_name like 'r%_';
++-------------+---------------+----------------+-----------------+---------------------+-----------------+
+| customer_id | customer_name | customer_email | customer_mobile | customer_department | customer_status |
++-------------+---------------+----------------+-----------------+---------------------+-----------------+
+|           1 | ravi kumar    | ravi@gmail.com | 9988776666      | IT                  | Enabled         |
+|           3 | Riya Verma    | riya@gmail.com | 7766889988      | ADMIN               | Enabled         |
++-------------+---------------+----------------+-----------------+---------------------+-----------------+
+2 rows in set (0.000 sec)
+
+MariaDB [mysql_learning]> select order_master.order_no, customer_master.customer_name from order_master inner join customer_master ON customer_master.customer_id=order_master.order_customer where order_amount >1100 ;
++-----------+---------------+
+| order_no  | customer_name |
++-----------+---------------+
+| ORDER1001 | ravi kumar    |
++-----------+---------------+
+1 row in set (0.000 sec)
+
+MariaDB [mysql_learning]> select customer_department from customer_master;
++---------------------+
+| customer_department |
++---------------------+
+| IT                  |
+| HR                  |
+| ADMIN               |
+| ADMIN               |
++---------------------+
+4 rows in set (0.000 sec)
+
+MariaDB [mysql_learning]> select ditinct(customer_department) from customer_master;
+ERROR 1305 (42000): FUNCTION mysql_learning.ditinct does not exist
+MariaDB [mysql_learning]> select distinct(customer_department) from customer_master;
++---------------------+
+| customer_department |
++---------------------+
+| IT                  |
+| HR                  |
+| ADMIN               |
++---------------------+
+3 rows in set (0.000 sec)
+
+MariaDB [mysql_learning]> select customer_name from customer_master order by customer_name ASC;
++---------------+
+| customer_name |
++---------------+
+| pooja sharma  |
+| ravi kumar    |
+| Riya Verma    |
+| Surya Singh   |
++---------------+
+4 rows in set (0.000 sec)
+
+MariaDB [mysql_learning]> select customer_name from customer_master order by customer_name DESC;
++---------------+
+| customer_name |
++---------------+
+| Surya Singh   |
+| Riya Verma    |
+| ravi kumar    |
+| pooja sharma  |
++---------------+
+4 rows in set (0.000 sec)
+
+MariaDB [mysql_learning]> select cancat(customer_name,customer_email) as fullname from customer_master;
+ERROR 1305 (42000): FUNCTION mysql_learning.cancat does not exist
+MariaDB [mysql_learning]> select concat(customer_name,customer_email) as fullname from customer_master;
++-----------------------------+
+| fullname                    |
++-----------------------------+
+| ravi kumarravi@gmail.com    |
+| pooja sharmapooja@gmail.com |
+| Riya Vermariya@gmail.com    |
+| Surya Singhsurya@gmail.com  |
++-----------------------------+
+4 rows in set (0.000 sec)
